@@ -1,0 +1,4 @@
+{
+  "welcome": "{#italic}Welcome{/italic}, {#bold}{$username}{/bold}!",
+  "link": "Visit {#link to=|https://example.com|}our site{/link}"
+}
