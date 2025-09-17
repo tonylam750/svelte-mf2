@@ -1,29 +1,31 @@
-
-
 <script lang="ts">
   import en from "../locales/en.json" with { type: "json" };
   import es from "../locales/es.json" with { type: "json" };
   import { init, t, locale } from "../lib/stores.js";
+  import { writable } from "svelte/store";
 
-  // Initialize translations
+  let name = "Alice";
+  const count = writable(0);
+
   init({
     fallbackLocale: "en",
     messages: { en, es }
   });
 
-  // Function to switch locale
-  function switchToSpanish() {
-    locale.set("es");
-  }
+  const switchToSpanish = () => locale.set("es");
+  const switchToEnglish = () => locale.set("en");
+  const increment = () => count.update(n => n + 1);
+  const decrement = () => count.update(n => n-1);
 
-  function switchToEnglish() {
-    locale.set("en");
-  }
 </script>
 
-<h1>i18n Demo</h1>
+<h1>mf2 Demo</h1>
 
-<button on:click={switchToEnglish}>English</button>
-<button on:click={switchToSpanish}>Español</button>
+<h1>{@html $t("welcome", { username: name })}</h1>
+<p>{$t("inbox", { count: $count })}</p>
 
-<p>{@html $t("welcome", { username: "Tony" })}</p>
+<button onclick={switchToEnglish}>English</button>
+<button onclick={switchToSpanish}>Español</button>
+
+<button onclick={increment}>{$t("increment")}</button>
+<button onclick={decrement}>{$t("decrement")}</button>

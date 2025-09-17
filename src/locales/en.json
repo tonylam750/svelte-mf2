@@ -1,4 +1,6 @@
 {
-  "welcome": "{#italic}Welcome{/italic}, {#bold}{$username}{/bold}!",
-  "link": "Visit {#link to=|https://example.com|}our site{/link}"
+  "welcome": "Welcome, {$username}!",
+  "inbox": ".input {$count :number}\n.match $count\n  one   {{You have {$count} new message}}\n  * {{You have {$count} new messages}}",
+  "increment": "increment",
+  "decrement": "decrement"
 }

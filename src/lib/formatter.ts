@@ -22,6 +22,9 @@ export default function mf2(lang: string, mf2string: string, vars: Record<string
             case "bidiIsolation":
                 html.push(part.value || "");
                 break;
+            case "number":
+                html.push(part.parts.map(p => p.value).join(""));
+                break;
             default:
                 break;
         }
@@ -31,7 +34,9 @@ export default function mf2(lang: string, mf2string: string, vars: Record<string
 }
 
 function markupToHTML(part: MessageMarkupPart): string {
-    switch(part.name) {
+    const name = part.name?.trim().toLowerCase();
+
+    switch(name) {
         case "bold":
             return part.kind === "open" ? "<b>" : "</b>";
         case "italic":
