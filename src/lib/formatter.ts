@@ -1,4 +1,5 @@
 import { MessageFormat, type MessageMarkupPart } from "messageformat";
+import sanitizeHtml from 'sanitize-html';
 
 export default function mf2(lang: string, mf2string: string, vars: Record<string, any>) {
     const mf = new MessageFormat(lang, mf2string);
@@ -30,7 +31,10 @@ export default function mf2(lang: string, mf2string: string, vars: Record<string
         }
     }
     
-    return html.join(""); 
+    const unsafeHtml = html.join(""); 
+
+    return sanitizeHtml(unsafeHtml);
+
 }
 
 function markupToHTML(part: MessageMarkupPart): string {
@@ -54,25 +58,3 @@ function markupToHTML(part: MessageMarkupPart): string {
             return "";
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
