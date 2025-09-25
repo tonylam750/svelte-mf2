@@ -3,9 +3,12 @@
   import es from "../locales/es.json" with { type: "json" };
   import { init, t, locale } from "../lib/stores.js";
   import { writable } from "svelte/store";
+	import Mf2 from "../components/Mf2.svelte";
+	import Formatter from "../lib/Formatter.svelte";
 
   let name = "Alice";
   const count = writable(0);
+  
 
   init({
     fallbackLocale: "en",
@@ -14,18 +17,16 @@
 
   const switchToSpanish = () => locale.set("es");
   const switchToEnglish = () => locale.set("en");
-  const increment = () => count.update(n => n + 1);
-  const decrement = () => count.update(n => n-1);
+
+  let props = {username: "morendin", hei:"hei"}
 
 </script>
 
-<h1>mf2 Demo</h1>
 
-<h1>{@html $t("welcome", { username: name })}</h1>
-<p>{$t("inbox", { count: $count })}</p>
+
+<Formatter id="welcome" data={props}/>
+
+
 
 <button onclick={switchToEnglish}>English</button>
 <button onclick={switchToSpanish}>Español</button>
-
-<button onclick={increment}>{$t("increment")}</button>
-<button onclick={decrement}>{$t("decrement")}</button>
