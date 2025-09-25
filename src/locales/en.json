@@ -1,5 +1,5 @@
 {
-  "welcome": "Welcome, {$username}!",
+  "welcome": "{#bold}Welcome{/bold}, {$username}! ",
   "inbox": ".input {$count :number}\n.match $count\n  one   {{You have {$count} new message}}\n  * {{You have {$count} new messages}}",
   "increment": "increment",
   "decrement": "decrement"

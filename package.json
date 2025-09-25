@@ -55,6 +55,7 @@
 		]
 	},
 	"dependencies": {
-		"messageformat": "4.0.0-10"
+		"messageformat": "4.0.0-10",
+		"sanitize-html": "^2.17.0"
 	}
 }
